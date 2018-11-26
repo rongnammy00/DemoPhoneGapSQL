@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link href="css/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.4.5.js" type="text/javascript"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="js/database.js" type="text/javascript"></script>
+        <script src="js/product.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div data-role="page" id="addpage">
+            <div data-role="panel" id="addPagePanel">
+                <h1>MENU</h1>
+                <ul data-role="listview" data-inset="true">
+                    <li data-role="list-divider">Product</li>
+                    <li data-icon="plus"><a href="#addpage">ADD</a></li>
+                    <li data-icon="grid"><a href="#loadpage">Load</a></li>
+                </ul>
+            </div>
+            <div data-role="header" data-position="fixed">
+                <a href="#addPagePanel" class="ui-btn ui-icon-bars ui-btn-icon-notext ui-content-all ui-shadow" ></a>
+                <h1>ADD PRODUCT</h1>
+            </div>
+            <div data-role="main" class="ui-content">
+                <form>
+                    <div class="ui-field-contain">
+                        <label for="txtName">Name:</label>
+                        <input type="text" id="txtName" data-clear-btn="true"/>
+                        <label for="txtQuantity">Quantity:</label>
+                        <input type="number" id="txtQuantity" data-clear-btn="true"/>
+                        <label for="btnAdd"></label>
+                        <a class="ui-btn ui-icon-plus ui-btn-icon-left" id="btnAdd" onclick="addProduct()">ADD</a>
+                    </div>
+                </form>
+            </div>
+            <div data-role="footer" data-position="fixed">
+                <h1>ERIS</h1>
+            </div>
+        </div>
+        <div data-role="page" id="loadpage">
+            <div data-role="panel" id="loadPagePanel">
+                <h1>MENU</h1>
+                <ul data-role="listview" data-inset="true">
+                    <li data-role="list-divider">Product</li>
+                    <li data-icon="plus"><a href="#addpage">ADD</a></li>
+                    <li data-icon="grid"><a href="#loadpage">Load</a></li>
+                </ul>
+            </div>
+            <div data-role="header" data-position="fixed">
+                <a href="#loadPagePanel" class="ui-btn ui-icon-bars ui-btn-icon-notext ui-content-all ui-shadow" ></a>
+                <h1>Load products</h1>
+            </div>
+            <div data-role="main" class="ui-content">
+                <form class="ui-filterable">
+                    <input data-type="search" id="txtKeyword" />
+                </form>
+                <ul data-role="listview" data-filter="true" data-input="#txtKeyword" data-inset="true" id="lstProducts">
+                </ul>
+                <a href="#popupUpdateDelete" data-rel="popup" class="ui-btn">Popup</a>
+                <div data-role="popup" id="popupUpdateDelete">
+                    <a class="ui-btn ui-icon-delete ui-btn-icon-notext ui-content-all" data-rel="back"></a>
+                    <div data-role="header">
+                        <h1>Update</h1>
+                    </div>
+                    <div data-role="main" class="ui-content">
+                        <a class="ui-btn ui-icon-delete ui-btn-icon-left ui-btn-inline">Delete</a>
+                        <a class="ui-btn ui-icon-edit ui-btn-icon-left ui-btn-inline">Update</a>
+                    </div>
+
+                </div>
+            </div>
+            <div data-role="footer" data-position="fixed">               
+                <h1>ERIS</h1>
+            </div>
+        </div>
+    </body>
+</html>
