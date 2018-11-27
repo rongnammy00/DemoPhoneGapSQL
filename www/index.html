@@ -63,21 +63,38 @@
                 </form>
                 <ul data-role="listview" data-filter="true" data-input="#txtKeyword" data-inset="true" id="lstProducts">
                 </ul>
-                <a href="#popupUpdateDelete" data-rel="popup" class="ui-btn">Popup</a>
+                <!--<a href="#popupUpdateDelete" data-rel="popup" class="ui-btn">Popup</a>-->
                 <div data-role="popup" id="popupUpdateDelete">
                     <a class="ui-btn ui-icon-delete ui-btn-icon-notext ui-content-all" data-rel="back"></a>
                     <div data-role="header">
                         <h1>Update</h1>
                     </div>
                     <div data-role="main" class="ui-content">
-                        <a class="ui-btn ui-icon-delete ui-btn-icon-left ui-btn-inline">Delete</a>
-                        <a class="ui-btn ui-icon-edit ui-btn-icon-left ui-btn-inline">Update</a>
+                        <a class="ui-btn ui-icon-delete ui-btn-icon-left ui-btn-inline" onclick="deleteProduct()">Delete</a>
+                        <a class="ui-btn ui-icon-edit ui-btn-icon-left ui-btn-inline" href="#updatedialog">Update</a>
                     </div>
 
                 </div>
             </div>
             <div data-role="footer" data-position="fixed">               
                 <h1>ERIS</h1>
+            </div>
+        </div>
+        <div data-role="dialog" id="updatedialog">
+            <div data-role="header">
+                <h1>Update product</h1>
+            </div>
+            <div data-role="main" class="ui-content">
+                <form>
+                    <div class="ui-field-contain">
+                        <label for="txtNewName">Name:</label>
+                        <input type="text" id="txtNewName" data-clear-btn="true"/>
+                        <label for="txtNewQuantity">Quantity:</label>
+                        <input type="number" id="txtNewQuantity" data-clear-btn="true"/>
+                        <label for="btnUpdate"></label>
+                        <a class="ui-btn ui-icon-plus ui-btn-icon-left" id="btnUpdate" onclick="updateProduct()">Update</a>
+                    </div>
+                </form>
             </div>
         </div>
     </body>

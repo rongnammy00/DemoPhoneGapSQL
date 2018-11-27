@@ -17,12 +17,17 @@ function addProduct() {
             $("#txtQuantity").val("");
         }
     }
-
+}
+var currentProduct = {
+    id: -1,
+    name: "",
+    quantity: -1,
 }
 function displayProducts(results) {
     var length = results.rows.length;
     var lstProducts = $("#lstProducts");
-    for (var i = 0; i< length; i++) {
+    lstProducts.empty(); //clean old data
+    for (var i = 0; i < length; i++) {
         var item = results.rows.item(i);
         var a = $("<a />");
         var h3 = $("<h3 />").text("Product name: ");
@@ -44,11 +49,34 @@ function displayProducts(results) {
         li.attr("data-filtertext", item.name);
         li.append(a);
         lstProducts.append(li);
-
     }
     lstProducts.listview("refresh");
+    lstProducts.on("tap", "li", function () {
+        currentProduct.id = $(this).find("[name='_id']").text();
+        currentProduct.name = $(this).find("[name='name']").text();
+        currentProduct.quantity = $(this).find("[name='quantity']").text();
+        $("#popupUpdateDelete").popup("open");
+    });
 }
-
 $(document).on("pagebeforeshow", "#loadpage", function () {
     product.loadProducts(displayProducts);
 });
+function deleteProduct() {
+    var r = confirm("Delete product\nName: " + currentProduct.name +
+            "\nQuantity: " + currentProduct.quantity);
+    if (r == true) {
+        product.deleteProduct(currentProduct.id);
+        product.loadProducts(displayProducts);
+    }
+    $("#popupUpdateDelete").popup("close");
+}
+$(document).on("pagebeforeshow", "#updatedialog", function () {
+    $("#txtNewName").val(currentProduct.name);
+    $("#txtNewQuantity").val(currentProduct.quantity);
+});
+function updateProduct() {
+    var newName = $("#txtNewName").val();
+    var newQuantity = $("#txtNewQuantity").val();
+    product.updateProduct(currentProduct.id, newName, newQuantity);
+    $("#updatedialog").dialog("close");
+}
